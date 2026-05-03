@@ -1,0 +1,5 @@
+Initial release of Notify Forwarder!
+- Forward notifications to self-hosted ntfy servers
+- Forward incoming calls
+- Redact or skip OTP verification codes
+- Configurable heartbeats and log retention

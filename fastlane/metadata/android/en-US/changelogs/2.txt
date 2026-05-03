@@ -1,0 +1,4 @@
+- New app icon: dark background with bell-and-arrow design
+- Log screen: centered empty-state text
+- README: added screenshots section
+- Store metadata: added title, description, and changelogs

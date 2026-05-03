@@ -1,0 +1,11 @@
+A privacy-first Android notification and call forwarder that pushes your phone's notifications and incoming calls alerts to a self-hosted ntfy server. 
+
+Nothing leaves your device except what you explicitly configure to be forwarded, and only to your own server. No hardcoded app list, no cloud dependency, and no third-party analytics.
+
+Features:
+* Dynamic app selection: Searchable picker of all installed apps
+* Rich notifications: Per-app emoji tags, icons, markdown, and OTP copy buttons
+* OTP verification codes: Forward as-is, redact codes, or skip entirely
+* Incoming call alert forwarding: Optional contact name resolution
+* Smart log retention: Auto-delete on success with configurable retention
+* Security hardened: HTTPS enforcement and AES-256-GCM encryption for all secrets

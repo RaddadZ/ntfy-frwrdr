@@ -26,6 +26,17 @@ A **privacy-first Android notification and call forwarder** that pushes your pho
 
 ---
 
+## Screenshots
+
+<p>
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" width="180" alt="Apps screen">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" width="180" alt="Permissions settings">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" width="180" alt="ntfy server &amp; OTP settings">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" width="180" alt="Log screen">
+</p>
+
+---
+
 ## Privacy
 
 | Data | Where it goes | When |
