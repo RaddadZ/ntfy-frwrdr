@@ -50,5 +50,5 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
-          name: app-release-signed
+          name: app-release-latest
           path: app/build/outputs/apk/release/*.apk

@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Compute version
+        id: version
+        run: |
+          TAG="${GITHUB_REF#refs/tags/v}"
+          CODE=$(git tag -l 'v*' | wc -l)
+          echo "name=$TAG" >> "$GITHUB_OUTPUT"
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "Version: $TAG (code $CODE)"
+
+      - name: Build signed release APK
+        env:
+          APP_VERSION_NAME: ${{ steps.version.outputs.name }}
+          APP_VERSION_CODE: ${{ steps.version.outputs.code }}
+          KEYSTORE_PATH: /tmp/release.jks
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          echo "${{ secrets.SIGNING_KEY_BASE64 }}" | base64 -d > /tmp/release.jks
+          ./gradlew assembleRelease
+          rm -f /tmp/release.jks
+
+      - name: Rename APK
+        run: |
+          mv app/build/outputs/apk/release/*.apk \
+             app/build/outputs/apk/release/ntfy-frwrdr-${{ steps.version.outputs.name }}.apk
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: app/build/outputs/apk/release/ntfy-frwrdr-${{ steps.version.outputs.name }}.apk

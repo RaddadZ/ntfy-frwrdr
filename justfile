@@ -23,6 +23,16 @@ build:
 release:
     ./gradlew assembleRelease
 
+# Version-aware release build using latest git tag
+release-tag:
+    #!/usr/bin/env bash
+    TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+    CODE=$(git tag -l 'v*' | wc -l)
+    export APP_VERSION_NAME="${TAG#v}"
+    export APP_VERSION_CODE="$CODE"
+    echo "Building version $APP_VERSION_NAME (code $APP_VERSION_CODE)"
+    ./gradlew assembleRelease
+
 # Clean build outputs
 clean:
     ./gradlew clean

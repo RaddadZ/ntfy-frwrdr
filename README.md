@@ -8,7 +8,7 @@ A **privacy-first Android notification and call forwarder** that pushes your pho
 
 > **For privacy-conscious users:** Nothing leaves your device except what you explicitly configure to be forwarded, and only to _your own_ server. See [Privacy](#privacy) below.
 
-[![Get it on Obtainium](https://raw.githubusercontent.com/ImranR98/Obtainium/main/assets/graphics/badge_obtainium.png)](http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/RaddadZ/ntfy-frwrdr)
+<a href="http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/RaddadZ/ntfy-frwrdr"><img src="https://raw.githubusercontent.com/ImranR98/Obtainium/main/assets/graphics/badge_obtainium.png" alt="Get it on Obtainium" width="200"></a>
 
 ---
 
@@ -80,16 +80,32 @@ Open the project in Android Studio Hedgehog (2023.1.1) or later and run the `app
 
 ---
 
-## CI
+## CI & Releases
 
-GitHub Actions runs on every push to `main` and on pull requests:
+### Continuous Integration (`build.yml`)
+
+Runs on every push to `main` and on pull requests:
 
 1. **Unit tests** (`testDebugUnitTest`)
 2. **Lint** (`lintDebug`)
 3. **Release build** (`assembleRelease`)
-4. **Sign & upload APK** (main branch only — signed with repository secrets)
+4. **Upload signed APK** (main branch only — `app-release-latest` artifact)
 
-The pipeline mirrors `just ci` locally, so running `just ci` before pushing catches the same failures.
+The pipeline mirrors `just ci` locally.
+
+### Releases (`release.yml`)
+
+Triggered when a semver tag is pushed:
+
+```bash
+git tag v1.0.0
+git push --tags
+```
+
+This builds a signed, versioned APK and creates a **GitHub Release** with `ntfy-frwrdr-<version>.apk` attached.
+
+- **`versionName`** — derived from the tag (e.g. `v1.2.3` → `1.2.3`)
+- **`versionCode`** — monotonically increasing (total tag count)
 
 ---
 
