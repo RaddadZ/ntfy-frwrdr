@@ -1,0 +1,13 @@
+package io.github.raddadz.ntfyforwarder
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "log_entries")
+data class LogEntryEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val timestamp: Long,
+    val title: String,
+    val message: String,
+    val status: String = "sent"
+)

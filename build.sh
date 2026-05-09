@@ -18,7 +18,6 @@ docker run --rm \
   "${IMAGE_NAME}" \
   bash -c "
     chmod +x gradlew && \
-    curl -sL https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar && \
     ./gradlew assembleDebug --no-daemon
   "
 

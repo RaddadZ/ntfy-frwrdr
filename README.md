@@ -139,7 +139,7 @@ This builds a signed, versioned APK and creates a **GitHub Release** with `ntfy-
 ## Architecture
 
 ```
-app/src/main/java/com/playground/android/
+app/src/main/java/io/github/raddadz/ntfyforwarder/
 ├── MainActivity.kt                  # Compose UI: Apps + Log tabs, Settings via top bar
 ├── NotifyForwarderApp.kt            # Application class, in-memory caches, WorkManager
 ├── SettingsRepository.kt            # Interface for all settings (testable abstraction)
@@ -178,6 +178,14 @@ app/src/main/java/com/playground/android/
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## Distribution
+
+- [F-Droid build notes](docs/fdroid.md) — build flavor, toolchain, dependencies, anti-features
+- [Privacy & permissions](docs/privacy-permissions.md) — per-permission justifications, data handling
+- [Security policy](SECURITY.md) — disclosure process, signing, on-device security
 
 ---
 

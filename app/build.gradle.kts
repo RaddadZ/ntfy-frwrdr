@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.playground.android"
+    namespace = "io.github.raddadz.ntfyforwarder"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.playground.android"
+        applicationId = "io.github.raddadz.ntfyforwarder"
         minSdk = 26
         targetSdk = 34
         versionCode = (System.getenv("APP_VERSION_CODE") ?: "1").toInt()
